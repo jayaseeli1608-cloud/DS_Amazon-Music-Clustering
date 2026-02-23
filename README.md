@@ -3,9 +3,9 @@ Here is a **professional GitHub README.md file** for your project:
 
 ---
 
-# 🎵 Amazon Music Clustering Using Unsupervised Machine Learning
+# Amazon Music Clustering Using Unsupervised Machine Learning
 
-## 📌 Project Overview
+## Project Overview
 
 This project applies **Unsupervised Machine Learning (K-Means Clustering)** to group Amazon Music tracks based on their audio characteristics.
 
@@ -25,7 +25,7 @@ The goal is to identify meaningful clusters that represent musical moods or styl
 
 ---
 
-## 🧠 Problem Statement
+##  Problem Statement
 
 With millions of songs available on streaming platforms like **Amazon Music**, manually categorizing tracks is impractical.
 
@@ -38,7 +38,7 @@ This project builds a clustering model that:
 
 ---
 
-## 🎯 Objectives
+##  Objectives
 
 * Perform Data Exploration & Cleaning
 * Normalize audio features
@@ -54,7 +54,12 @@ This project builds a clustering model that:
 
 * **Dataset Name:** `single_genre_artists.csv`
 * **Total Records:** 95,837 songs
-* **Features Used for Clustering:**
+* **Features Used for Clustering:**Removed duplicates
+Dropped irrelevant text columns
+Used StandardScaler for normalization
+Scaling prevents dominance of loudness & tempo
+<img width="1808" height="196" alt="image" src="https://github.com/user-attachments/assets/051a7104-2a3a-4a20-b399-3a022ed3b1c9" />
+
 
 ```
 danceability
@@ -95,27 +100,27 @@ name_artists
 
 ---
 
-## 🔎 Methodology
+## Methodology
 
-### 1️⃣ Data Exploration & Preprocessing
+###  Data Exploration & Preprocessing
 
 * Checked missing values & duplicates
 * Removed non-relevant text columns
 * Selected only sound-related features
 
-### 2️⃣ Feature Scaling
+### Feature Scaling
 
 Used **StandardScaler** because clustering is distance-based.
 
 Without scaling, features like loudness & tempo dominate.
 
-### 3️⃣ Finding Optimal Clusters
+###  Finding Optimal Clusters
 
-#### 📊 Elbow Method
+#### Elbow Method
 
 Elbow observed around **k = 4**
 
-#### 📈 Silhouette Scores
+####  Silhouette Scores
 
 | k | Score |
 | - | ----- |
