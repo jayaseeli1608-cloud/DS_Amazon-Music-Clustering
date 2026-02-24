@@ -1,183 +1,113 @@
-# DS_Amazon-Music-Clustering
-Here is a **professional GitHub README.md file** for your project:
+# Project Overview
 
----
+With millions of songs available on music streaming platforms, manual categorization into genres or moods is inefficient and subjective.
 
-# Amazon Music Clustering Using Unsupervised Machine Learning
+This project applies unsupervised machine learning techniques to automatically group Amazon Music tracks based on their audio characteristics.
 
-## Project Overview
+By analyzing features like danceability, energy, tempo, and acousticness, we identify meaningful clusters that represent different musical styles or moods — without using predefined labels.
 
-This project applies **Unsupervised Machine Learning (K-Means Clustering)** to group Amazon Music tracks based on their audio characteristics.
+# The objective 
 
-Instead of manually labeling genres, this model automatically discovers patterns in features like:
+* Automatically group similar songs
+* Identify hidden patterns in music data
+* Build interpretable clusters based on audio features
+* Support recommendation systems and playlist generation
 
-* Danceability
-* Energy
-* Loudness
-* Speechiness
-* Acousticness
-* Instrumentalness
-* Valence
-* Tempo
-* Duration
+# Dataset Description
 
-The goal is to identify meaningful clusters that represent musical moods or styles.
-
----
-
-##  Problem Statement
-
-With millions of songs available on streaming platforms like **Amazon Music**, manually categorizing tracks is impractical.
-
-This project builds a clustering model that:
-
-* Groups similar songs together
-* Identifies hidden music patterns
-* Supports recommendation systems
-* Enables playlist automation
-
----
-
-##  Objectives
-
-* Perform Data Exploration & Cleaning
-* Normalize audio features
-* Apply K-Means clustering
-* Determine optimal number of clusters
-* Evaluate clusters using multiple metrics
-* Visualize cluster patterns
-* Interpret cluster characteristics
-
----
-
-## 📂 Dataset Information
-
+The dataset contains audio features of Amazon Music tracks.
 * **Dataset Name:** `single_genre_artists.csv`
 * **Total Records:** 95,837 songs
-* **Features Used for Clustering:**Removed duplicates
-Dropped irrelevant text columns
-Used StandardScaler for normalization
-Scaling prevents dominance of loudness & tempo
-<img width="1808" height="196" alt="image" src="https://github.com/user-attachments/assets/051a7104-2a3a-4a20-b399-3a022ed3b1c9" />
+* **Features Used for Clustering:**
+
+* danceability
+* energy
+* loudness
+* speechiness
+* acousticness
+* instrumentalness
+* liveness
+* valence
+* tempo
+* duration_ms
 
 
-```
-danceability
-energy
-loudness
-speechiness
-acousticness
-instrumentalness
-liveness
-valence
-tempo
-duration_ms
-```
 
-Text columns removed:
+# Text Fields (Removed Before Clustering):
 
-```
-id_songs
-name_song
-id_artists
-release_date
-genres
-name_artists
-```
+* id_songs
+* name_song
+* id_artists
+* release_date
+* genres
+* name_artists
 
----
 
-## ⚙️ Tech Stack
+# Technologies Used
 
 * Python
 * Pandas
 * NumPy
+* Scikit-learn
 * Matplotlib
 * Seaborn
-* Scikit-learn
-* PCA
+* PCA (Dimensionality Reduction)
+* K-Means
+* DBSCAN
 * t-SNE
+  
+# Project Workflow
+## 1. Data Exploration & Preprocessing
 
----
+Checked dataset structure and data types
 
-## Methodology
+Handled missing values
 
-###  Data Exploration & Preprocessing
+Removed unnecessary columns
 
-* Checked missing values & duplicates
-* Removed non-relevant text columns
-* Selected only sound-related features
+Normalized features using StandardScaler
 
-### Feature Scaling
+## 2 Feature Selection
 
 Used **StandardScaler** because clustering is distance-based.
 
 Without scaling, features like loudness & tempo dominate.
 
-###  Finding Optimal Clusters
 
-#### Elbow Method
+## 3 Dimensionality Reduction
 
-Elbow observed around **k = 4**
+Applied PCA for:
 
-####  Silhouette Scores
+Reducing dimensions
 
-| k | Score |
-| - | ----- |
-| 2 | 0.203 |
-| 3 | 0.242 |
-| 4 | 0.231 |
-| 5 | 0.186 |
+Visualizing clusters in 2D space
 
-Final choice: **k = 4**
+## 4️ Clustering Techniques Implemented
+K-Means Clustering
 
----
+Used the Elbow Method to determine optimal k
 
-## 📊 Cluster Evaluation Metrics
+Evaluated using Silhouette Score
 
-* **Silhouette Score:** `0.231`
-* **Davies-Bouldin Index:** `1.53`
-* **Inertia:** Used for compactness evaluation
+Added cluster labels to the dataset
 
----
+DBSCAN
 
-## 🎼 Cluster Interpretation
+Tuned eps and min_samples
 
-### 🎹 Cluster 0 – Instrumental / Acoustic Focus
+Detected noise/outliers
 
-* Very high instrumentalness
-* High acousticness
-* Low loudness
-* Calm / atmospheric
+Discovered arbitrary-shaped clusters
 
----
+# Model Evaluation Metrics
+Metric	Purpose
+Silhouette Score	Measures cluster separation quality
+Davies-Bouldin Index	Evaluates intra/inter-cluster similarity
+Inertia	Measures cluster compactness (K-Means)
+Cluster Size Balance	Checks even distribution of songs
+Feature Interpretability	: Understand dominant characteristics
 
-### 🎉 Cluster 1 – Party / Dance Pop
-
-* High energy
-* High danceability
-* High valence (happy mood)
-* Loud and energetic
-
----
-
-### 🎙 Cluster 2 – Rap / Spoken Content
-
-* Extremely high speechiness
-* Very low instrumentalness
-* Moderate energy
-
----
-
-### 🎵 Cluster 3 – Chill Acoustic / Soft Pop
-
-* Very acoustic
-* Low energy
-* Emotional / indie feel
-
----
-
-## 📊 Visualizations Included
+# Visualizations
 
 * Distribution plots of audio features
 * Elbow curve
@@ -185,36 +115,36 @@ Final choice: **k = 4**
 * PCA 2D visualization
 * t-SNE visualization
 * Heatmap of cluster feature averages
+  
+# Cluster Interpretation
+##  Cluster Interpretation
 
----
+###  Cluster 0 – Instrumental / Acoustic Focus
 
-## 💼 Business Use Cases
-
-* 🎧 Personalized playlist generation
-* 🔍 Improved song discovery
-* 🎤 Artist similarity analysis
-* 📊 Market segmentation for streaming platforms
-* 🤖 Music recommendation engines
+* Very high instrumentalness
+* High acousticness
+* Low loudness
+* Calm / atmospheric
 
 
-## 📈 Results
+###  Cluster 1 – Party / Dance Pop
 
-The clustering successfully identified:
+* High energy
+* High danceability
+* High valence (happy mood)
+* Loud and energetic
 
-* Energetic commercial music
-* Instrumental tracks
-* Rap / spoken word tracks
-* Emotional acoustic tracks
 
-These clusters align with real-world musical patterns and can support recommendation systems.
+###  Cluster 2 – Rap / Spoken Content
 
----
+* Extremely high speechiness
+* Very low instrumentalness
+* Moderate energy
 
-## 🔮 Future Improvements
 
-* Deploy as a Streamlit web app
-* Add Spotify API integration
-* Try DBSCAN & Hierarchical Clustering
-* Improve silhouette score with feature engineering
+###  Cluster 3 – Chill Acoustic / Soft Pop
 
-Tell me which version you prefer 😊
+* Very acoustic
+* Low energy
+* Emotional/indie feel
+
